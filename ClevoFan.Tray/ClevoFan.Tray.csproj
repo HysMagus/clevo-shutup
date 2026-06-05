@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <AssemblyName>ClevoFanTray</AssemblyName>
+    <RootNamespace>ClevoFan.Tray</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <!-- Share the exact same, already-validated EC core with the CLI (one source of truth). -->
+  <ItemGroup>
+    <Compile Include="..\ClevoFan\Native\PawnIo.cs"            Link="Core\PawnIo.cs" />
+    <Compile Include="..\ClevoFan\Ec\ClevoEc.cs"              Link="Core\ClevoEc.cs" />
+    <Compile Include="..\ClevoFan\Control\FanCurve.cs"        Link="Core\FanCurve.cs" />
+    <Compile Include="..\ClevoFan\Control\FanController.cs"   Link="Core\FanController.cs" />
+    <Compile Include="..\ClevoFan\Service\ClevoServices.cs"   Link="Core\ClevoServices.cs" />
+  </ItemGroup>
+
+  <!-- Copy the signed PawnIO module next to the tray exe at build time, if the CLI already has it. -->
+  <ItemGroup>
+    <None Include="..\ClevoFan\bin\Release\net8.0-windows\LpcACPIEC.bin"
+          Condition="Exists('..\ClevoFan\bin\Release\net8.0-windows\LpcACPIEC.bin')"
+          CopyToOutputDirectory="PreserveNewest"
+          Link="LpcACPIEC.bin" />
+  </ItemGroup>
+
+</Project>

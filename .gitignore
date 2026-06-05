@@ -1,0 +1,14 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+*.user
+.vs/
+
+# PawnIO module + native libs are third-party downloads — don't commit binaries.
+# (They live in bin/ which is already ignored; this is belt-and-suspenders.)
+*.bin
+PawnIOLib.dll
+
+# Transient tooling / research scrape (kept on disk, not in the repo)
+.playwright-mcp/
+clevo-thread.md
