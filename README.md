@@ -1,11 +1,11 @@
 # Clevo Quiet Fan
 
-Tame the absurd fan noise on a **Lambda Tensorbook / Clevo PC50-series** laptop running Windows.
+Make fan noise reasonable on **Lambda Tensorbook / Clevo PC50-series** laptops running Windows.
 
-The factory Clevo/Lambda Control Center runs **both** fans hard even at idle, and all three of its
-modes (Automatic / Max / Custom) are far too aggressive. This project gives you a genuinely quiet
-CPU-fan curve (and quiets the idle GPU fan) that you can **flip on whenever the noise annoys you and
-flip back to factory in one click** — nothing is permanently disabled.
+The factory Clevo/Lambda Control Center runs **both** fans hard even at idle as they've got an aggresive fan curve on all three of its
+modes (Automatic / Max / Custom). 
+This project gives you a quieter CPU-fan curve (and quiets the idle GPU fan) that you can **flip on whenever the noise annoys you and
+flip back to factory in one click**, nothing is permanently disabled.
 
 Two pieces, sharing one validated Embedded-Controller engine:
 
