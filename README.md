@@ -96,6 +96,20 @@ The icon appears in the **hidden-icons overflow** — click the `^` chevron next
 
 The status line at the top of the menu (and the tooltip) shows live CPU temp / fan % / RPM.
 
+### Autostart at login
+
+The app needs Administrator, so a Startup-folder shortcut would nag UAC every login. Instead, register
+a logon **Scheduled Task** that runs elevated with no prompt (run once from an **Administrator** shell):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install-autostart.ps1
+```
+
+It copies the build to `%LOCALAPPDATA%\ClevoFan` (a stable path, so logon doesn't depend on WSL being
+mounted) and registers the task. Override paths if you want:
+`.\install-autostart.ps1 -Source <build-dir> -InstallDir <run-dir>`. Re-run after rebuilding.
+Remove it with `.\uninstall-autostart.ps1`. Start immediately: `Start-ScheduledTask -TaskName ClevoFanTray`.
+
 ---
 
 ## Use — command line
@@ -164,6 +178,8 @@ ClevoFan/            CLI tool + the shared core
 ClevoFan.Tray/       WinForms system-tray app (links the shared core)
 build.ps1            build both projects
 run-tray.ps1         build (if needed) + launch the tray elevated
+install-autostart.ps1   register a logon Scheduled Task (elevated, no UAC)
+uninstall-autostart.ps1 remove the autostart task
 ```
 
 ---

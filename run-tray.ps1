@@ -1,6 +1,7 @@
 # Build the tray app if needed, then launch it elevated (UAC prompt).
-$root = $PSScriptRoot
-$exe  = Join-Path $root 'ClevoFan.Tray\bin\Release\net8.0-windows\ClevoFanTray.exe'
+# -Root defaults to this script's folder (the repo root); pass it to point elsewhere.
+param([string]$Root = $PSScriptRoot)
+$exe = Join-Path $Root 'ClevoFan.Tray\bin\Release\net8.0-windows\ClevoFanTray.exe'
 
 if (-not (Test-Path $exe)) {
     Write-Host "Building tray app..." -ForegroundColor Cyan
